@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>كم باقي؟ | العد التنازلي للمناسبات</title>
+<meta name="description" content="كم باقي على رمضان؟ كم باقي على العيد؟ كم باقي على الراتب؟ اعرف الآن بالعد التنازلي المباشر">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@300;400;600;700;900&family=Readex+Pro:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+/* ══════ THEMES ══════ */
+:root, [data-theme="obsidian"] {
+  --bg-primary:#08080f;--bg-card:#101018;--bg-card-hover:#18182a;
+  --gold:#c9a84c;--gold-light:#e8cc6e;--gold-dim:#8a6e28;
+  --text-primary:#eae6de;--text-secondary:#8a8898;
+  --accent-green:#3edba5;--accent-rose:#ff6b9d;--accent-blue:#7c6ef0;--accent-orange:#f0a030;
+  --radius:22px;--font-main:'Noto Sans Arabic','Readex Pro',sans-serif;
+  --ambient1:rgba(201,168,76,0.05);--ambient2:rgba(124,110,240,0.04);
+}
+[data-theme="snow"] {
+  --bg-primary:#f8f7f4;--bg-card:#ffffff;--bg-card-hover:#f4f2ee;
+  --gold:#6b4f12;--gold-light:#4a3508;--gold-dim:#a88430;
+  --text-primary:#18181b;--text-secondary:#52525b;
+  --accent-green:#047857;--accent-rose:#be185d;--accent-blue:#4338ca;--accent-orange:#b45309;
+  --ambient1:rgba(107,79,18,0.03);--ambient2:rgba(67,56,202,0.02);
+}
+[data-theme="ocean"] {
+  --bg-primary:#06101a;--bg-card:#0c1a2e;--bg-card-hover:#122640;
+  --gold:#38bdf8;--gold-light:#7dd3fc;--gold-dim:#0284c7;
+  --text-primary:#e0f2fe;--text-secondary:#6ba3c7;
+  --accent-green:#2dd4bf;--accent-rose:#fb7185;--accent-blue:#a78bfa;--accent-orange:#fbbf24;
+  --ambient1:rgba(56,189,248,0.06);--ambient2:rgba(45,212,191,0.04);
+}
+[data-theme="emerald"] {
+  --bg-primary:#05120e;--bg-card:#0a1f18;--bg-card-hover:#102e22;
+  --gold:#34d399;--gold-light:#6ee7b7;--gold-dim:#059669;
+  --text-primary:#e6f5ef;--text-secondary:#6daa90;
+  --accent-green:#34d399;--accent-rose:#fb923c;--accent-blue:#93c5fd;--accent-orange:#fcd34d;
+  --ambient1:rgba(52,211,153,0.06);--ambient2:rgba(5,150,105,0.04);
+}
+[data-theme="sunset"] {
+  --bg-primary:#1a0e12;--bg-card:#261620;--bg-card-hover:#321e2a;
+  --gold:#f472b6;--gold-light:#f9a8d4;--gold-dim:#db2777;
+  --text-primary:#fce7f3;--text-secondary:#b87a98;
+  --accent-green:#a3e635;--accent-rose:#f472b6;--accent-blue:#c4b5fd;--accent-orange:#fdba74;
+  --ambient1:rgba(244,114,182,0.06);--ambient2:rgba(219,39,119,0.04);
+}
+[data-theme="sand"] {
+  --bg-primary:#16130e;--bg-card:#1e1a14;--bg-card-hover:#28231a;
+  --gold:#e8b44c;--gold-light:#f0cc70;--gold-dim:#b08428;
+  --text-primary:#f0e8d8;--text-secondary:#a89878;
+  --accent-green:#86efac;--accent-rose:#fca5a5;--accent-blue:#bfdbfe;--accent-orange:#e8b44c;
+  --ambient1:rgba(232,180,76,0.07);--ambient2:rgba(176,132,40,0.04);
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:var(--font-main);background:var(--bg-primary);color:var(--text-primary);min-height:100vh;overflow-x:hidden;transition:background 0.4s,color 0.4s;line-height:1.8}
+body::before{content:'';position:fixed;top:-50%;right:-20%;width:600px;height:600px;background:radial-gradient(circle,var(--ambient1) 0%,transparent 70%);pointer-events:none;z-index:0}
+body::after{content:'';position:fixed;bottom:-30%;left:-10%;width:500px;height:500px;background:radial-gradient(circle,var(--ambient2) 0%,transparent 70%);pointer-events:none;z-index:0}
+
+/* ══════ THEME SWITCHER ══════ */
+.theme-bar{position:fixed;top:14px;left:14px;z-index:60;display:flex;gap:5px;background:rgba(16,16,24,0.8);border:1px solid rgba(255,255,255,0.06);border-radius:30px;padding:5px 8px;backdrop-filter:blur(16px);box-shadow:0 4px 24px rgba(0,0,0,0.4)}
+.theme-dot{width:20px;height:20px;border-radius:50%;border:2px solid transparent;cursor:pointer;transition:all 0.3s}
+.theme-dot:hover{transform:scale(1.2)}
+.theme-dot.active{border-color:var(--gold);box-shadow:0 0 10px rgba(201,168,76,0.5);transform:scale(1.1)}
+.theme-dot[data-t="obsidian"]{background:linear-gradient(135deg,#08080f,#c9a84c)}
+.theme-dot[data-t="snow"]{background:linear-gradient(135deg,#f8f7f4,#6b4f12)}
+.theme-dot[data-t="ocean"]{background:linear-gradient(135deg,#06101a,#38bdf8)}
+.theme-dot[data-t="emerald"]{background:linear-gradient(135deg,#05120e,#34d399)}
+.theme-dot[data-t="sunset"]{background:linear-gradient(135deg,#1a0e12,#f472b6)}
+.theme-dot[data-t="sand"]{background:linear-gradient(135deg,#16130e,#e8b44c)}
+
+/* ══════ SPONSORS ══════ */
+.sponsors-bar{background:rgba(255,255,255,0.02);border-bottom:1px solid rgba(255,255,255,0.04);padding:10px 20px;position:relative;z-index:2}
+.sponsors-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;gap:16px}
+.sponsors-label{font-size:0.68rem;color:var(--text-secondary);font-weight:600;white-space:nowrap;letter-spacing:1px;opacity:0.5}
+.sponsors-scroll{display:flex;align-items:center;gap:6px;overflow-x:auto;flex:1;scrollbar-width:none}
+.sponsors-scroll::-webkit-scrollbar{display:none}
+.sponsor-item{display:flex;align-items:center;gap:7px;text-decoration:none;color:var(--text-secondary);white-space:nowrap;padding:5px 13px;border-radius:8px;transition:all 0.3s;font-size:0.78rem;font-weight:600;border:1px solid transparent}
+.sponsor-item:hover{background:rgba(212,168,83,0.06);border-color:rgba(212,168,83,0.12);color:var(--gold-light)}
+
+/* ══════ HEADER ══════ */
+.header{text-align:center;padding:50px 20px 30px;position:relative;z-index:1}
+.header h1{font-size:clamp(2.5rem,7vw,4rem);font-weight:900;background:linear-gradient(135deg,var(--gold-light),var(--gold),var(--gold-dim),var(--gold-light));background-size:300% 300%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;letter-spacing:-1px;margin-bottom:10px;animation:shimmer 6s ease infinite}
+@keyframes shimmer{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+.header .subtitle{color:var(--text-secondary);font-weight:400;font-size:1.05rem;letter-spacing:0.5px}
+.header::after{content:'';display:block;margin:24px auto 0;width:60px;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);border-radius:2px}
+
+/* ══════ FILTERS ══════ */
+.filters{display:flex;justify-content:center;gap:8px;padding:10px 20px 30px;flex-wrap:wrap;position:relative;z-index:1}
+.filter-btn{background:var(--bg-card);border:1px solid rgba(128,128,128,0.12);color:var(--text-secondary);padding:9px 20px;border-radius:50px;font-family:var(--font-main);font-size:0.85rem;font-weight:600;cursor:pointer;transition:all 0.3s;line-height:1.6}
+.filter-btn:hover{border-color:var(--gold);color:var(--gold);transform:translateY(-1px)}
+.filter-btn.active{background:linear-gradient(135deg,var(--gold-dim),var(--gold));color:var(--bg-primary);border-color:var(--gold);transform:translateY(-1px);box-shadow:0 4px 16px rgba(201,168,76,0.25)}
+
+/* ══════ ADD CUSTOM EVENT ══════ */
+.add-event-bar{max-width:1200px;margin:0 auto 20px;padding:0 20px;position:relative;z-index:1}
+.add-event-btn{width:100%;padding:14px;border:2px dashed rgba(128,128,128,0.15);border-radius:var(--radius);background:transparent;color:var(--text-secondary);font-family:var(--font-main);font-size:0.9rem;font-weight:600;cursor:pointer;transition:all 0.3s;display:flex;align-items:center;justify-content:center;gap:8px}
+.add-event-btn:hover{border-color:var(--gold);color:var(--gold);background:rgba(212,168,83,0.03)}
+.add-event-form{display:none;background:var(--bg-card);border:1px solid rgba(128,128,128,0.1);border-radius:var(--radius);padding:22px;gap:12px;flex-direction:column}
+.add-event-form.show{display:flex}
+.add-event-form input{padding:10px 14px;border-radius:12px;border:1px solid rgba(128,128,128,0.1);background:rgba(255,255,255,0.04);color:var(--text-primary);font-family:var(--font-main);font-size:0.88rem;outline:none;transition:border 0.3s}
+.add-event-form input:focus{border-color:var(--gold)}
+.add-event-form input::placeholder{color:var(--text-secondary);opacity:0.5}
+.add-event-row{display:flex;gap:10px}
+.add-event-row input{flex:1}
+.add-event-submit{padding:10px 24px;border:none;border-radius:12px;background:linear-gradient(135deg,var(--gold-dim),var(--gold));color:var(--bg-primary);font-family:var(--font-main);font-size:0.88rem;font-weight:700;cursor:pointer;transition:all 0.3s}
+.add-event-submit:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(212,168,83,0.3)}
+
+/* ══════ GRID ══════ */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:20px;padding:0 20px 30px;max-width:1200px;margin:0 auto;position:relative;z-index:1}
+
+/* ══════ CARDS ══════ */
+.card{background:var(--bg-card);border:1px solid rgba(128,128,128,0.08);border-radius:var(--radius);padding:30px;position:relative;overflow:hidden;transition:all 0.5s cubic-bezier(0.4,0,0.2,1);cursor:default;animation:cardIn 0.7s ease backwards;backdrop-filter:blur(4px)}
+.card:nth-child(1){animation-delay:.06s}.card:nth-child(2){animation-delay:.12s}.card:nth-child(3){animation-delay:.18s}.card:nth-child(4){animation-delay:.24s}.card:nth-child(5){animation-delay:.30s}.card:nth-child(6){animation-delay:.36s}
+@keyframes cardIn{from{opacity:0;transform:translateY(40px) scale(0.97)}to{opacity:1;transform:translateY(0) scale(1)}}
+.card:hover{background:var(--bg-card-hover);border-color:var(--card-accent,rgba(212,168,83,0.2));transform:translateY(-6px);box-shadow:0 24px 48px rgba(0,0,0,0.25),0 0 0 1px var(--card-accent,rgba(212,168,83,0.08))}
+.card::before{content:'';position:absolute;top:0;right:0;width:100%;height:3px;background:linear-gradient(90deg,transparent,var(--card-accent,var(--gold)),transparent);opacity:0.8}
+.card::after{content:'';position:absolute;top:0;right:0;width:100%;height:100%;background:radial-gradient(circle at 80% 20%,rgba(255,255,255,0.02),transparent 60%);pointer-events:none}
+.card-icon{font-size:2.2rem;margin-bottom:14px;display:inline-block}
+.card-category{display:inline-block;font-size:0.75rem;font-weight:700;letter-spacing:1px;color:var(--gold);margin-bottom:8px;line-height:2}
+.card-title{font-size:1.35rem;font-weight:700;margin-bottom:6px;line-height:1.7}
+.card-date{font-weight:400;font-size:0.85rem;color:var(--text-primary);opacity:0.7;margin-bottom:20px;line-height:1.8}
+.countdown{display:flex;align-items:center;justify-content:center;gap:8px;direction:ltr}
+.cd-unit{text-align:center;min-width:56px;background:rgba(128,128,128,0.06);border:1px solid rgba(128,128,128,0.06);border-radius:12px;padding:10px 8px;transition:all 0.3s}
+.card:hover .cd-unit{background:rgba(128,128,128,0.1);border-color:rgba(128,128,128,0.1)}
+.cd-num{font-size:1.7rem;font-weight:900;line-height:1;font-variant-numeric:tabular-nums;transition:all 0.3s}
+.card:hover .cd-num{color:var(--card-accent,var(--gold))}
+.cd-label{font-size:0.68rem;color:var(--text-primary);opacity:0.6;font-weight:600;margin-top:6px;line-height:1.6}
+.cd-sep{color:var(--gold);font-size:1.3rem;font-weight:300;opacity:0.4;align-self:flex-start;margin-top:10px;animation:sepBlink 2s ease infinite}
+@keyframes sepBlink{0%,100%{opacity:0.4}50%{opacity:0.1}}
+
+/* Share & Download buttons */
+.card-actions{margin-top:16px;display:flex;flex-wrap:wrap;gap:8px}
+.card-action-btn{display:inline-flex;align-items:center;gap:5px;background:rgba(128,128,128,0.08);border:1px solid rgba(128,128,128,0.12);color:var(--text-primary);opacity:0.8;padding:6px 12px;border-radius:10px;font-family:var(--font-main);font-size:0.72rem;font-weight:600;cursor:pointer;transition:all 0.3s;text-decoration:none}
+.card-action-btn:hover{opacity:1;background:rgba(212,168,83,0.1);border-color:rgba(212,168,83,0.25);color:var(--gold);transform:translateY(-1px)}
+.card-action-btn.share-x:hover{color:#1d9bf0}.card-action-btn.share-wa:hover{color:#25d366}
+.card-action-btn.share-tg:hover{color:#29b6f6}
+
+/* Custom event badge */
+.badge-custom{position:absolute;top:16px;left:56px;background:rgba(108,92,231,0.15);color:var(--accent-blue);font-size:0.65rem;font-weight:700;padding:3px 8px;border-radius:50px}
+.delete-custom{position:absolute;top:16px;left:16px;background:rgba(232,67,147,0.1);border:none;color:var(--accent-rose);width:26px;height:26px;border-radius:50%;font-size:0.8rem;cursor:pointer;display:flex;align-items:center;justify-content:center;opacity:0;transition:all 0.2s}
+.card:hover .delete-custom{opacity:0.7}
+.delete-custom:hover{opacity:1!important;background:rgba(232,67,147,0.2)}
+
+/* Badges */
+.badge-live{position:absolute;top:16px;left:16px;background:rgba(45,212,168,0.15);color:var(--accent-green);font-size:0.7rem;font-weight:700;padding:4px 12px;border-radius:50px;display:flex;align-items:center;gap:5px;line-height:1.6;backdrop-filter:blur(6px)}
+.badge-live::before{content:'';width:6px;height:6px;background:var(--accent-green);border-radius:50%;animation:pulse 1.5s infinite;box-shadow:0 0 6px var(--accent-green)}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.3;transform:scale(0.8)}}
+.card.nearest{border-color:rgba(212,168,83,0.3);background:var(--bg-card);box-shadow:0 0 0 1px rgba(212,168,83,0.1),0 4px 20px rgba(212,168,83,0.06);animation:cardIn 0.7s ease backwards,nearestGlow 4s ease infinite}
+@keyframes nearestGlow{0%,100%{box-shadow:0 0 0 1px rgba(212,168,83,0.1),0 4px 20px rgba(212,168,83,0.06)}50%{box-shadow:0 0 0 1px rgba(212,168,83,0.15),0 4px 30px rgba(212,168,83,0.12)}}
+.badge-nearest{position:absolute;top:16px;left:16px;background:linear-gradient(135deg,var(--gold-dim),var(--gold));color:var(--bg-primary);font-size:0.7rem;font-weight:700;padding:5px 14px;border-radius:50px;line-height:1.6;box-shadow:0 4px 12px rgba(201,168,76,0.3)}
+
+/* ══════ AD BANNERS ══════ */
+.ad-banner{max-width:1200px;margin:0 auto 30px;padding:0 20px;position:relative;z-index:1}
+.ad-inner{background:linear-gradient(135deg,rgba(128,128,128,0.04),rgba(128,128,128,0.02));border:1px solid rgba(128,128,128,0.08);border-radius:var(--radius);padding:22px 28px;display:flex;align-items:center;gap:20px;transition:all 0.4s;text-decoration:none;color:var(--text-primary);cursor:pointer;position:relative;overflow:hidden}
+.ad-inner::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 90% 50%,rgba(201,168,76,0.04),transparent 60%);pointer-events:none}
+.ad-inner:hover{border-color:rgba(212,168,83,0.15);transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,0.15)}
+.ad-icon{font-size:2.2rem;flex-shrink:0}
+.ad-content{flex:1}.ad-content h3{font-size:1rem;font-weight:700;margin-bottom:3px}
+.ad-content p{font-size:0.82rem;color:var(--text-secondary);font-weight:300}
+.ad-cta{background:linear-gradient(135deg,var(--gold-dim),var(--gold));color:var(--bg-primary);padding:8px 20px;border-radius:50px;font-family:var(--font-main);font-size:0.8rem;font-weight:700;white-space:nowrap;flex-shrink:0}
+.ad-tag{position:absolute;top:10px;left:30px;font-size:0.6rem;color:var(--text-secondary);opacity:0.35;letter-spacing:1px}
+
+/* ══════ DEALS ══════ */
+.deals-section{max-width:1200px;margin:0 auto 30px;padding:0 20px;position:relative;z-index:1}
+.deals-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.deals-title{font-size:1.05rem;font-weight:700;display:flex;align-items:center;gap:8px}
+.deals-tag{font-size:0.6rem;color:var(--text-secondary);opacity:0.4;letter-spacing:1px}
+.deals-scroll{display:flex;gap:14px;overflow-x:auto;scrollbar-width:none;padding-bottom:4px}
+.deals-scroll::-webkit-scrollbar{display:none}
+.deal-card{min-width:200px;max-width:200px;background:var(--bg-card);border:1px solid rgba(128,128,128,0.06);border-radius:16px;padding:18px;flex-shrink:0;transition:all 0.4s;text-decoration:none;color:var(--text-primary);display:flex;flex-direction:column;position:relative;overflow:hidden}
+.deal-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent-green),var(--accent-orange));opacity:0;transition:opacity 0.3s}
+.deal-card:hover{border-color:rgba(212,168,83,0.15);transform:translateY(-4px);box-shadow:0 16px 32px rgba(0,0,0,0.2)}
+.deal-card:hover::before{opacity:1}
+.deal-emoji{font-size:2rem;margin-bottom:10px}
+.deal-store{font-size:0.65rem;color:var(--accent-green);font-weight:700;letter-spacing:1px;margin-bottom:4px}
+.deal-name{font-size:0.88rem;font-weight:700;margin-bottom:6px;line-height:1.4}
+.deal-desc{font-size:0.74rem;color:var(--text-secondary);font-weight:300;margin-bottom:12px;line-height:1.5;flex:1}
+.deal-badge{display:inline-block;background:rgba(232,67,147,0.12);color:var(--accent-rose);font-size:0.7rem;font-weight:700;padding:4px 10px;border-radius:8px;align-self:flex-start}
+
+/* ══════ PREMIUM + NEWSLETTER + APP ══════ */
+.premium-section,.newsletter,.app-banner{max-width:1200px;margin:0 auto 30px;padding:0 20px;position:relative;z-index:1}
+.premium-header{display:flex;align-items:center;margin-bottom:16px}
+.premium-title{font-size:1.05rem;font-weight:700;display:flex;align-items:center;gap:8px}
+.premium-scroll{display:flex;gap:14px;overflow-x:auto;scrollbar-width:none;padding-bottom:4px}
+.premium-scroll::-webkit-scrollbar{display:none}
+.premium-card{min-width:170px;max-width:170px;background:var(--bg-card);border:1px solid rgba(128,128,128,0.06);border-radius:16px;overflow:hidden;flex-shrink:0;transition:all 0.3s;cursor:pointer;text-decoration:none;color:var(--text-primary)}
+.premium-card:hover{border-color:rgba(212,168,83,0.15);transform:translateY(-3px)}
+.premium-preview{height:110px;display:flex;align-items:center;justify-content:center;font-size:3rem;position:relative}
+.premium-preview::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,transparent 60%,var(--bg-card))}
+.premium-info{padding:12px 14px}
+.premium-name{font-size:0.78rem;font-weight:700;margin-bottom:4px}
+.premium-price{display:flex;align-items:center;justify-content:space-between}
+.premium-amount{font-size:0.75rem;color:var(--gold);font-weight:700}
+.premium-free{font-size:0.65rem;color:var(--accent-green);font-weight:700}
+.premium-buy{font-size:0.65rem;background:rgba(212,168,83,0.12);color:var(--gold);padding:3px 10px;border-radius:6px;font-weight:700}
+
+.newsletter-inner{background:linear-gradient(135deg,rgba(212,168,83,0.06),rgba(45,212,168,0.03));border:1px solid rgba(212,168,83,0.1);border-radius:var(--radius);padding:28px 30px;display:flex;align-items:center;gap:24px}
+.newsletter-icon{font-size:2.6rem;flex-shrink:0}
+.newsletter-text{flex:1}
+.newsletter-text h3{font-size:1.05rem;font-weight:700;margin-bottom:5px}
+.newsletter-text p{font-size:0.8rem;color:var(--text-secondary);font-weight:300;margin-bottom:14px;line-height:1.6}
+.newsletter-form{display:flex;gap:8px}
+.newsletter-input{flex:1;padding:10px 14px;border-radius:12px;border:1px solid rgba(128,128,128,0.1);background:rgba(128,128,128,0.06);color:var(--text-primary);font-family:var(--font-main);font-size:0.85rem;outline:none;transition:border 0.3s}
+.newsletter-input:focus{border-color:var(--gold)}
+.newsletter-input::placeholder{color:var(--text-secondary);opacity:0.5}
+.newsletter-submit{padding:10px 22px;border:none;border-radius:12px;background:linear-gradient(135deg,var(--gold-dim),var(--gold));color:var(--bg-primary);font-family:var(--font-main);font-size:0.85rem;font-weight:700;cursor:pointer;white-space:nowrap;transition:all 0.3s}
+.newsletter-submit:hover{transform:translateY(-1px)}
+.newsletter-note{font-size:0.66rem;color:var(--text-secondary);opacity:0.5;margin-top:8px;font-weight:300}
+
+.app-inner{background:linear-gradient(135deg,rgba(108,92,231,0.08),rgba(45,212,168,0.04));border:1px solid rgba(108,92,231,0.12);border-radius:var(--radius);padding:24px 28px;display:flex;align-items:center;gap:20px}
+.app-mockup{font-size:2.6rem;flex-shrink:0;background:rgba(108,92,231,0.12);width:52px;height:52px;border-radius:16px;display:flex;align-items:center;justify-content:center}
+.app-text{flex:1}.app-text h3{font-size:1rem;font-weight:700;margin-bottom:3px}
+.app-text p{font-size:0.78rem;color:var(--text-secondary);font-weight:300}
+.app-btns{display:flex;gap:8px;flex-shrink:0}
+.app-store-btn{padding:8px 16px;border-radius:10px;background:rgba(128,128,128,0.08);border:1px solid rgba(128,128,128,0.1);color:var(--text-primary);font-family:var(--font-main);font-size:0.72rem;font-weight:700;cursor:pointer;text-decoration:none;display:flex;align-items:center;gap:6px;transition:all 0.3s}
+.app-store-btn:hover{background:rgba(128,128,128,0.14);transform:translateY(-1px)}
+
+/* ══════ FOOTER ══════ */
+.footer-sponsors{max-width:1200px;margin:0 auto;padding:30px 20px;position:relative;z-index:1}
+.footer-sponsors-title{text-align:center;font-size:0.7rem;color:var(--text-secondary);opacity:0.5;letter-spacing:2px;font-weight:600;margin-bottom:20px}
+.footer-sponsors-grid{display:flex;justify-content:center;flex-wrap:wrap;gap:12px}
+.footer-sponsor{display:flex;align-items:center;gap:8px;background:var(--bg-card);border:1px solid rgba(128,128,128,0.06);padding:10px 18px;border-radius:12px;text-decoration:none;color:var(--text-secondary);font-size:0.8rem;font-weight:600;transition:all 0.3s}
+.footer-sponsor:hover{border-color:rgba(212,168,83,0.15);color:var(--gold-light);transform:translateY(-2px)}
+.footer{text-align:center;padding:30px 20px 20px;color:var(--text-secondary);font-size:0.8rem;font-weight:300;position:relative;z-index:1;border-top:1px solid rgba(128,128,128,0.05)}
+
+/* ══════ MODAL ══════ */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.7);backdrop-filter:blur(8px);z-index:100;align-items:center;justify-content:center;padding:20px}
+.modal-overlay.active{display:flex}
+.modal{background:var(--bg-card);border:1px solid rgba(212,168,83,0.15);border-radius:var(--radius);max-width:560px;width:100%;max-height:80vh;overflow-y:auto;padding:32px;position:relative;animation:modalIn 0.3s ease}
+@keyframes modalIn{from{opacity:0;transform:scale(.95) translateY(20px)}to{opacity:1;transform:scale(1) translateY(0)}}
+.modal-close{position:absolute;top:14px;left:14px;background:rgba(128,128,128,0.1);border:none;color:var(--text-secondary);width:32px;height:32px;border-radius:50%;font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.2s}
+.modal-close:hover{background:rgba(128,128,128,0.2);color:var(--text-primary)}
+.modal-icon{font-size:2.4rem;margin-bottom:14px}
+.modal-title{font-size:1.25rem;font-weight:700;margin-bottom:6px}
+.modal-desc{color:var(--text-secondary);font-weight:300;font-size:0.88rem;margin-bottom:20px;line-height:1.7}
+.modal-content{background:rgba(128,128,128,0.04);border:1px solid rgba(128,128,128,0.06);border-radius:14px;padding:20px;margin-bottom:18px;font-size:0.92rem;line-height:2;white-space:pre-line;text-align:right}
+.modal-actions{display:flex;gap:10px;flex-wrap:wrap}
+.modal-btn{display:inline-flex;align-items:center;gap:6px;padding:10px 20px;border-radius:12px;font-family:var(--font-main);font-size:0.82rem;font-weight:700;cursor:pointer;transition:all 0.3s;border:none}
+.modal-btn-primary{background:linear-gradient(135deg,var(--gold-dim),var(--gold));color:var(--bg-primary)}
+.modal-btn-primary:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(212,168,83,0.3)}
+.modal-btn-secondary{background:rgba(128,128,128,0.08);color:var(--text-secondary)}
+.modal-btn-secondary:hover{background:rgba(128,128,128,0.14);color:var(--text-primary)}
+
+/* Notification FAB */
+.notif-fab{position:fixed;bottom:24px;left:24px;z-index:50;width:50px;height:50px;border-radius:50%;background:linear-gradient(135deg,var(--gold-dim),var(--gold));color:var(--bg-primary);border:none;cursor:pointer;font-size:1.3rem;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 30px rgba(212,168,83,0.3);transition:all 0.3s;animation:fabPulse 3s ease infinite}
+.notif-fab:hover{transform:scale(1.1)}
+@keyframes fabPulse{0%,100%{box-shadow:0 8px 30px rgba(212,168,83,0.3)}50%{box-shadow:0 8px 30px rgba(212,168,83,0.5),0 0 0 8px rgba(212,168,83,0.08)}}
+.notif-fab.subscribed{background:var(--accent-green);animation:none}
+
+/* ══════ RESPONSIVE ══════ */
+@media(max-width:700px){
+  .grid{grid-template-columns:1fr;padding:0 14px 24px;gap:16px}
+  .card{padding:22px}.cd-num{font-size:1.4rem}.cd-unit{min-width:44px;padding:6px 4px}
+  .header{padding:36px 16px 20px}.header h1{font-size:2rem}
+  .ad-inner,.newsletter-inner,.app-inner{flex-direction:column;text-align:center;gap:12px;padding:18px}
+  .newsletter-form{flex-direction:column}.newsletter-icon{display:none}
+  .app-btns{justify-content:center}
+  .deal-card{min-width:180px;max-width:180px}.premium-card{min-width:150px;max-width:150px}
+  .add-event-row{flex-direction:column}
+  .sponsors-bar{padding:8px 14px}.footer-sponsor{padding:8px 14px;font-size:0.76rem}
+  .modal{padding:24px}.theme-bar{top:auto;bottom:80px;left:50%;transform:translateX(-50%)}
+}
+.card.hidden{display:none}
+[data-theme="snow"] .card{border-color:rgba(0,0,0,0.1);box-shadow:0 2px 12px rgba(0,0,0,0.06);background:#ffffff}
+[data-theme="snow"] .card:hover{box-shadow:0 8px 30px rgba(0,0,0,0.1);background:#fafaf8}
+[data-theme="snow"] .card.nearest{background:#ffffff;border-color:rgba(107,79,18,0.25);box-shadow:0 2px 12px rgba(107,79,18,0.08)}
+[data-theme="snow"] .cd-unit{background:rgba(0,0,0,0.03)}
+[data-theme="snow"] .ad-inner{border-color:rgba(0,0,0,0.06)}
+[data-theme="snow"] .sponsors-bar{border-bottom-color:rgba(0,0,0,0.06)}
+[data-theme="snow"] .badge-live{background:rgba(4,120,87,0.1);color:#047857}
+[data-theme="snow"] .badge-live::before{background:#047857}
+[data-theme="snow"] .deal-card,[data-theme="snow"] .premium-card{border-color:rgba(0,0,0,0.06)}
+[data-theme="snow"] .footer-sponsor{border-color:rgba(0,0,0,0.06)}
+[data-theme="snow"] .notif-fab{box-shadow:0 8px 30px rgba(107,79,18,0.2)}
+[data-theme="snow"] .theme-bar{background:rgba(255,255,255,0.9);border-color:rgba(0,0,0,0.08)}
+[data-theme="snow"] .add-event-btn{border-color:rgba(0,0,0,0.12)}
+[data-theme="snow"] .newsletter-inner{border-color:rgba(0,0,0,0.08)}
+[data-theme="snow"] .app-inner{border-color:rgba(0,0,0,0.08)}
+</style>
+</head>
+<body data-theme="obsidian">
+
+<!-- Theme Switcher -->
+<div class="theme-bar">
+  <div class="theme-dot active" data-t="obsidian" title="أسود ذهبي" onclick="setTheme('obsidian')"></div>
+  <div class="theme-dot" data-t="snow" title="ثلجي فاتح" onclick="setTheme('snow')"></div>
+  <div class="theme-dot" data-t="ocean" title="محيط أزرق" onclick="setTheme('ocean')"></div>
+  <div class="theme-dot" data-t="emerald" title="زمردي" onclick="setTheme('emerald')"></div>
+  <div class="theme-dot" data-t="sunset" title="غروب وردي" onclick="setTheme('sunset')"></div>
+  <div class="theme-dot" data-t="sand" title="رملي دافئ" onclick="setTheme('sand')"></div>
+</div>
+
+<div class="sponsors-bar"><div class="sponsors-inner"><span class="sponsors-label">شركاؤنا</span><div class="sponsors-scroll">
+  <a href="https://www.noon.com" target="_blank" class="sponsor-item"><span>🛒</span> نون</a><a href="https://www.amazon.sa" target="_blank" class="sponsor-item"><span>🛍️</span> أمازون</a><a href="https://www.saadeddin.com" target="_blank" class="sponsor-item"><span>🍫</span> سعد الدين</a><a href="https://www.stc.com.sa" target="_blank" class="sponsor-item"><span>📱</span> stc</a><a href="https://www.jarir.com" target="_blank" class="sponsor-item"><span>🏪</span> جرير</a><a href="https://www.barnies.com" target="_blank" class="sponsor-item"><span>☕</span> بارنيز</a>
+</div></div></div>
+
+<header class="header"><h1>كم باقي ؟</h1><p class="subtitle">العد التنازلي المباشر لأهم المناسبات</p></header>
+
+<nav class="filters">
+  <button class="filter-btn active" data-filter="all">الكل</button>
+  <button class="filter-btn" data-filter="دينية">دينية</button>
+  <button class="filter-btn" data-filter="وطنية">وطنية</button>
+  <button class="filter-btn" data-filter="مالية">مالية</button>
+  <button class="filter-btn" data-filter="عروض">عروض</button>
+  <button class="filter-btn" data-filter="رياضية">رياضية</button>
+  <button class="filter-btn" data-filter="دراسية">🎓 دراسية</button>
+  <button class="filter-btn" data-filter="خاصة">⭐ مواعيدي</button>
+</nav>
+
+<!-- Add Custom Event -->
+<div class="add-event-bar">
+  <button class="add-event-btn" id="addEventToggle" onclick="toggleAddForm()">➕ أضف موعدك الخاص</button>
+  <div class="add-event-form" id="addEventForm">
+    <input type="text" id="ceTitle" placeholder="اسم الموعد (مثال: عيد ميلاد أحمد)">
+    <div class="add-event-row">
+      <input type="date" id="ceDate">
+      <input type="text" id="ceIcon" placeholder="إيموجي (🎂)" maxlength="4" style="max-width:80px;text-align:center">
+    </div>
+    <button class="add-event-submit" onclick="addCustomEvent()">✅ أضف الموعد</button>
+  </div>
+</div>
+
+<main class="grid" id="grid"></main>
+
+<div class="ad-banner" id="ad1"><span class="ad-tag">إعلان</span><a href="https://www.noon.com" target="_blank" class="ad-inner"><span class="ad-icon">🛒</span><div class="ad-content"><h3>كود خصم نون: ACC9 — وفّر حتى ١٠٪</h3><p>خصم فوري ١٠٪ + كاش باك للعملاء الجدد على الإلكترونيات والأزياء والعطور — انسخ الكود واستخدمه عند الدفع</p></div><span class="ad-cta" onclick="event.preventDefault();navigator.clipboard.writeText('ACC9');this.textContent='✅ تم نسخ الكود!'">📋 انسخ الكود</span></a></div>
+
+<section class="deals-section" id="dealsSection"><div class="deals-header"><h2 class="deals-title">🔥 عروض المناسبة</h2><span class="deals-tag">روابط تسويقية</span></div><div class="deals-scroll">
+  <a href="https://www.noon.com/saudi-ar/electronics/" target="_blank" class="deal-card"><span class="deal-emoji">📱</span><span class="deal-store">نون</span><h3 class="deal-name">إلكترونيات وجوالات</h3><p class="deal-desc">أحدث الأيفون والسامسونج — كود ACC9 لخصم إضافي</p><span class="deal-badge">حتى ٣٥٪</span></a>
+  <a href="https://www.amazon.sa/deals" target="_blank" class="deal-card"><span class="deal-emoji">🎁</span><span class="deal-store">أمازون</span><h3 class="deal-name">عروض اليوم</h3><p class="deal-desc">صفقات محدودة يوميًا — إلكترونيات ومنزل وأزياء</p><span class="deal-badge">حتى ٦٠٪</span></a>
+  <a href="https://www.jarir.com" target="_blank" class="deal-card"><span class="deal-emoji">💻</span><span class="deal-store">جرير</span><h3 class="deal-name">لابتوبات وشاشات</h3><p class="deal-desc">أجهزة كمبيوتر وقيمنق وملحقات بأقل الأسعار</p><span class="deal-badge">عروض خاصة</span></a>
+  <a href="https://www.noon.com/saudi-ar/fashion/" target="_blank" class="deal-card"><span class="deal-emoji">👔</span><span class="deal-store">نون فاشن</span><h3 class="deal-name">ملابس العيد</h3><p class="deal-desc">ثياب رجالية، فساتين، أطقم أطفال — ماركات عالمية</p><span class="deal-badge">خصم ٤٠٪</span></a>
+  <a href="https://www.saadeddin.com" target="_blank" class="deal-card"><span class="deal-emoji">🍫</span><span class="deal-store">سعد الدين</span><h3 class="deal-name">حلويات وشوكولاتة</h3><p class="deal-desc">بوكسات فاخرة للعائلة والضيوف — توصيل لكل المدن</p><span class="deal-badge">توصيل مجاني</span></a>
+  <a href="https://www.almosafer.com" target="_blank" class="deal-card"><span class="deal-emoji">✈️</span><span class="deal-store">المسافر</span><h3 class="deal-name">حجز طيران + فندق</h3><p class="deal-desc">باقات سفر لإجازة العيد — رحلات داخلية ودولية</p><span class="deal-badge">وفّر ٣٥٪</span></a>
+</div></section>
+
+<div class="grid" id="grid2"></div>
+
+<div class="ad-banner" id="ad2"><span class="ad-tag">إعلان</span><a href="https://www.amazon.sa" target="_blank" class="ad-inner"><span class="ad-icon">🛍️</span><div class="ad-content"><h3>أمازون السعودية — عروض يومية حتى ٦٠٪</h3><p>إلكترونيات، أجهزة منزلية، ملابس وعطور — شحن مجاني للطلبات فوق ١٠٠ ريال مع Prime</p></div><span class="ad-cta">تسوّق الآن ←</span></a></div>
+
+<section class="premium-section"><div class="premium-header"><h2 class="premium-title">🎨 تصاميم وبطاقات مميزة</h2></div><div class="premium-scroll">
+  <a href="#" class="premium-card"><div class="premium-preview" style="background:linear-gradient(135deg,#1a1a2e,#2d1b4e)">🌙</div><div class="premium-info"><h3 class="premium-name">بطاقة رمضان كريم</h3><div class="premium-price"><span class="premium-free">مجانية</span><span class="premium-buy">تحميل</span></div></div></a>
+  <a href="#" class="premium-card"><div class="premium-preview" style="background:linear-gradient(135deg,#1a2e1a,#0d3320)">🐑</div><div class="premium-info"><h3 class="premium-name">بطاقة عيد الأضحى</h3><div class="premium-price"><span class="premium-free">مجانية</span><span class="premium-buy">تحميل</span></div></div></a>
+  <a href="#" class="premium-card"><div class="premium-preview" style="background:linear-gradient(135deg,#2e1a1a,#3d1515)">🎉</div><div class="premium-info"><h3 class="premium-name">بوكس تهاني الفطر (5)</h3><div class="premium-price"><span class="premium-amount">٩.٩٩ ر.س</span><span class="premium-buy">شراء</span></div></div></a>
+  <a href="#" class="premium-card"><div class="premium-preview" style="background:linear-gradient(135deg,#1a2e2e,#0d3333)">🇸🇦</div><div class="premium-info"><h3 class="premium-name">بوكس اليوم الوطني (8)</h3><div class="premium-price"><span class="premium-amount">١٤.٩٩ ر.س</span><span class="premium-buy">شراء</span></div></div></a>
+</div></section>
+
+<section class="newsletter"><div class="newsletter-inner" style="background:linear-gradient(135deg,rgba(37,211,102,0.08),rgba(37,211,102,0.02));border-color:rgba(37,211,102,0.15)"><div class="newsletter-icon">💬</div><div class="newsletter-text"><h3>بوت "كم باقي؟" على واتساب 🤖</h3><p>أرسل اسم أي مناسبة ويرد عليك فورًا بالعد التنازلي + دعاء أو تهنئة جاهزة — يذكّرك تلقائيًا قبل كل مناسبة بيوم!</p><div class="newsletter-form"><a href="https://wa.me/966500000000?text=كم%20باقي%20على%20رمضان؟" target="_blank" class="newsletter-submit" style="text-decoration:none;text-align:center;display:flex;align-items:center;justify-content:center;gap:8px;background:linear-gradient(135deg,#128C7E,#25D366);font-size:0.95rem;padding:12px 28px;box-shadow:0 6px 20px rgba(37,211,102,0.25)">💬 ابدأ محادثة واتساب</a></div><p class="newsletter-note">✅ مجاني بالكامل • يرد بالذكاء الاصطناعي • بدون تحميل تطبيق</p></div></div></section>
+
+<div class="app-banner"><div class="app-inner"><div class="app-mockup">📱</div><div class="app-text"><h3>حمّل تطبيق "كم باقي؟"</h3><p>تذكيرات ذكية • ويدجت للشاشة الرئيسية • بدون إعلانات مزعجة</p></div><div class="app-btns"><a href="#" class="app-store-btn"> App Store</a><a href="#" class="app-store-btn">▶ Google Play</a></div></div></div>
+
+<section class="footer-sponsors"><div class="footer-sponsors-title">بدعم ورعاية</div><div class="footer-sponsors-grid">
+  <a href="https://www.noon.com" target="_blank" class="footer-sponsor"><span>🛒</span> نون</a><a href="https://www.amazon.sa" target="_blank" class="footer-sponsor"><span>🛍️</span> أمازون</a><a href="https://www.saadeddin.com" target="_blank" class="footer-sponsor"><span>🍫</span> سعد الدين</a><a href="https://www.stc.com.sa" target="_blank" class="footer-sponsor"><span>📱</span> stc</a><a href="https://www.jarir.com" target="_blank" class="footer-sponsor"><span>🏪</span> جرير</a><a href="https://www.barnies.com" target="_blank" class="footer-sponsor"><span>☕</span> بارنيز</a><a href="https://www.almosafer.com" target="_blank" class="footer-sponsor"><span>✈️</span> المسافر</a><a href="https://www.saudia.com" target="_blank" class="footer-sponsor"><span>🛩️</span> السعودية</a>
+</div></section>
+
+<footer class="footer">كم باقي؟ &copy; 2026 — يُحدَّث تلقائيًا كل ثانية</footer>
+
+<button class="notif-fab" id="notifFab" onclick="document.getElementById('notifFab').textContent='✅';document.getElementById('notifFab').classList.add('subscribed')">🔔</button>
+
+<div class="modal-overlay" id="modalOverlay"><div class="modal"><button class="modal-close" onclick="closeModal()">✕</button><div id="modalBody"></div></div></div>
+
+<script>
+// ══════ DOWNLOADS ══════
+const downloads={
+'رمضان 1448':[{icon:'🤲',label:'دعاء دخول رمضان',type:'dua',content:'اللَّهُمَّ أَهِلَّهُ عَلَيْنَا بِالْيُمْنِ وَالْإِيمَانِ\nوَالسَّلَامَةِ وَالْإِسْلَامِ\nرَبِّي وَرَبُّكَ اللَّهُ\n\nاللَّهُمَّ بَلِّغْنَا رَمَضَانَ\nوَبَارِكْ لَنَا فِيهِ\nوَتَقَبَّلْ مِنَّا صِيَامَهُ وَقِيَامَهُ'},{icon:'🌙',label:'بطاقة تهنئة رمضان',type:'greeting',content:'مبارك عليكم شهر رمضان 🌙\n\nأسأل الله أن يبلّغنا وإياكم رمضان\nوأن يُعيننا فيه على الصيام والقيام\nوأن يتقبّل منا ومنكم صالح الأعمال\n\nكل عام وأنتم بخير 🤍'}],
+'عيد الفطر 1447':[{icon:'🤲',label:'تكبيرات العيد',type:'dua',content:'اللهُ أَكْبَرُ اللهُ أَكْبَرُ اللهُ أَكْبَرُ\nلَا إِلَهَ إِلَّا اللهُ\nاللهُ أَكْبَرُ اللهُ أَكْبَرُ وَلِلَّهِ الحَمْدُ'},{icon:'🎉',label:'بطاقة تهنئة العيد',type:'greeting',content:'عيدكم مبارك 🎉\n\nتقبّل الله منّا ومنكم صالح الأعمال\nوكل عام وأنتم بخير\nأعاده الله علينا وعليكم باليُمن والبركات 🤍'}],
+'يوم عرفة 1447':[{icon:'🤲',label:'دعاء يوم عرفة',type:'dua',content:'لا إلهَ إلَّا اللهُ وحدَهُ لا شريكَ لهُ\nلهُ المُلكُ ولهُ الحمدُ وهوَ على كلِّ شيءٍ قديرٌ\n\nاللَّهُمَّ إِنِّي أَسْأَلُكَ الْعَفْوَ وَالْعَافِيَةَ\nفِي الدُّنْيَا وَالْآخِرَةِ\n\nرَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً\nوَفِي الْآخِرَةِ حَسَنَةً وَقِنَا عَذَابَ النَّارِ'}],
+'عيد الأضحى 1447':[{icon:'🐑',label:'بطاقة تهنئة الأضحى',type:'greeting',content:'عيد أضحى مبارك 🐑\n\nتقبّل الله طاعتكم\nوأعاد الله عليكم هذا العيد\nأعوامًا عديدة وأزمنة مديدة\n\nكل عام وأنتم بخير 🤍'}],
+'اليوم الوطني السعودي':[{icon:'🇸🇦',label:'بطاقة تهنئة وطنية',type:'greeting',content:'🇸🇦 اليوم الوطني السعودي\n\nدام عزّك يا وطن\nوكل عام والمملكة العربية السعودية\nبخير وأمن وازدهار\n\n💚 نحلم ونحقق 🤍'}],
+'يوم التأسيس':[{icon:'🏴',label:'بطاقة يوم التأسيس',type:'greeting',content:'🏴 يوم التأسيس\n\nيوم بدينا 1727م\nنفتخر بتاريخنا وبجذورنا الراسخة\n\nدامت المملكة عزيزة شامخة 💚'}]
+};
+
+// ══════ SALARY CALCULATOR ══════
+function getSalaryDate(y,m){let d=new Date(y,m-1,27);const w=d.getDay();if(w===5)d.setDate(26);if(w===6)d.setDate(28);return d}
+function genSalaryEvents(){const now=new Date(),evts=[],ar=['','يناير','فبراير','مارس','أبريل','مايو','يونيو','يوليو','أغسطس','سبتمبر','أكتوبر','نوفمبر','ديسمبر'],days=['الأحد','الاثنين','الثلاثاء','الأربعاء','الخميس','الجمعة','السبت'];
+let c=0,y=now.getFullYear(),m=now.getMonth()+1;
+while(c<3){const s=getSalaryDate(y,m);if(s>now){const ds=`${s.getFullYear()}-${String(s.getMonth()+1).padStart(2,'0')}-${String(s.getDate()).padStart(2,'0')}`;const n=s.getDate()!==27?(s.getDate()===26?' (٢٧ جمعة)':' (٢٧ سبت)'):'';
+evts.push({icon:'💰',title:`نزول الراتب (${ar[s.getMonth()+1]})`,date:ds,hijri:`${days[s.getDay()]} ${s.getDate()} ${ar[s.getMonth()+1]}${n}`,category:'مالية',accent:'#2dd4a8'});c++}m++;if(m>12){m=1;y++}}return evts}
+
+// ══════ CUSTOM EVENTS (persistent storage) ══════
+let customEvents = [];
+
+async function loadCustom(){
+  try {
+    const result = await window.storage.get('custom-events');
+    if (result && result.value) {
+      customEvents = JSON.parse(result.value);
+    }
+  } catch(e) {
+    // Key doesn't exist yet, start empty
+    customEvents = [];
+  }
+}
+
+async function saveCustom(){
+  try {
+    await window.storage.set('custom-events', JSON.stringify(customEvents));
+  } catch(e) {
+    console.error('Storage save failed:', e);
+  }
+}
+
+function toggleAddForm(){const f=document.getElementById('addEventForm');f.classList.toggle('show')}
+
+async function addCustomEvent(){
+  const t=document.getElementById('ceTitle').value.trim();
+  const d=document.getElementById('ceDate').value;
+  const ic=document.getElementById('ceIcon').value.trim()||'📌';
+  if(!t||!d){
+    if(!t) document.getElementById('ceTitle').style.borderColor='var(--accent-rose)';
+    if(!d) document.getElementById('ceDate').style.borderColor='var(--accent-rose)';
+    setTimeout(()=>{document.getElementById('ceTitle').style.borderColor='';document.getElementById('ceDate').style.borderColor=''},2000);
+    return;
+  }
+  customEvents.push({icon:ic,title:t,date:d,hijri:d,category:'خاصة',accent:'#6c5ce7',custom:true,id:Date.now()});
+  await saveCustom();
+  renderCards();
+  document.getElementById('ceTitle').value='';document.getElementById('ceDate').value='';document.getElementById('ceIcon').value='';
+  document.getElementById('addEventForm').classList.remove('show');
+  // Flash success
+  const btn=document.getElementById('addEventToggle');
+  btn.textContent='✅ تمت الإضافة!';btn.style.color='var(--accent-green)';btn.style.borderColor='var(--accent-green)';
+  setTimeout(()=>{btn.textContent='➕ أضف موعدك الخاص';btn.style.color='';btn.style.borderColor=''},2000);
+}
+
+async function deleteCustom(id){
+  customEvents=customEvents.filter(e=>e.id!==id);
+  await saveCustom();
+  renderCards();
+}
+
+// ══════ FIXED EVENTS ══════
+const fixedEvents=[
+  {icon:'🌙',title:'رمضان 1448',date:'2027-02-08',hijri:'١ رمضان ١٤٤٨',category:'دينية',accent:'#d4a853'},
+  {icon:'🕌',title:'عيد الفطر 1447',date:'2026-03-20',hijri:'١ شوال ١٤٤٧',category:'دينية',accent:'#2dd4a8'},
+  {icon:'🕋',title:'يوم عرفة 1447',date:'2026-05-26',hijri:'٩ ذو الحجة ١٤٤٧',category:'دينية',accent:'#f0d48a'},
+  {icon:'🐑',title:'عيد الأضحى 1447',date:'2026-05-27',hijri:'١٠ ذو الحجة ١٤٤٧',category:'دينية',accent:'#d4a853'},
+  {icon:'📅',title:'رأس السنة الهجرية 1448',date:'2026-06-16',hijri:'١ محرم ١٤٤٨',category:'دينية',accent:'#6c5ce7'},
+  {icon:'🇸🇦',title:'اليوم الوطني السعودي',date:'2026-09-23',hijri:'٢٣ سبتمبر',category:'وطنية',accent:'#2dd4a8'},
+  {icon:'🏴',title:'يوم التأسيس',date:'2027-02-22',hijri:'٢٢ فبراير',category:'وطنية',accent:'#6c5ce7'},
+  {icon:'💸',title:'حساب المواطن (أبريل)',date:'2026-04-10',hijri:'١٠ أبريل',category:'مالية',accent:'#f39c12'},
+  {icon:'🏷️',title:'الجمعة البيضاء 2026',date:'2026-11-27',hijri:'٢٧ نوفمبر',category:'عروض',accent:'#e84393'},
+  {icon:'⚽',title:'كأس العالم 2026',date:'2026-06-11',hijri:'١١ يونيو — أمريكا وكندا والمكسيك',category:'رياضية',accent:'#f39c12'},
+  // ═══ التقويم الدراسي 1447-1448 (مصدر: وزارة التعليم) ═══
+  {icon:'🏖️',title:'إجازة عيد الفطر (مدارس)',date:'2026-03-06',hijri:'١٧ رمضان ١٤٤٧ — حتى ٢٨ مارس',category:'دراسية',accent:'#2dd4a8'},
+  {icon:'🏖️',title:'نهاية إجازة عيد الفطر (عودة)',date:'2026-03-29',hijri:'١٠ شوال ١٤٤٧ — عودة الدراسة',category:'دراسية',accent:'#6c5ce7'},
+  {icon:'🏖️',title:'إجازة عيد الأضحى (مدارس)',date:'2026-05-22',hijri:'٥ ذو الحجة — حتى ١ يونيو',category:'دراسية',accent:'#2dd4a8'},
+  {icon:'📝',title:'اختبارات نهاية العام',date:'2026-06-06',hijri:'١١ ذو القعدة ١٤٤٧ — حتى ١٧ يونيو',category:'دراسية',accent:'#e84393'},
+  {icon:'🎓',title:'بداية إجازة الصيف',date:'2026-06-25',hijri:'١٠ محرم ١٤٤٨',category:'دراسية',accent:'#e84393'},
+  {icon:'📚',title:'عودة المعلمين ١٤٤٨',date:'2026-08-16',hijri:'٣ ربيع الأول ١٤٤٨',category:'دراسية',accent:'#6c5ce7'},
+  {icon:'🎒',title:'بداية العام الدراسي ١٤٤٨',date:'2026-08-23',hijri:'١٠ ربيع الأول ١٤٤٨',category:'دراسية',accent:'#6c5ce7'},
+  {icon:'🍂',title:'إجازة الخريف ١٤٤٨',date:'2026-11-20',hijri:'١٠ جمادى الثانية — حتى ٢٨ نوفمبر',category:'دراسية',accent:'#f39c12'}
+];
+
+function getAllEvents(){return[...fixedEvents,...genSalaryEvents(),...customEvents]}
+
+function getTimeDiff(d){const now=new Date(),t=new Date(d+'T00:00:00'),diff=t-now;if(diff<=0)return null;return{days:Math.floor(diff/864e5),hours:Math.floor((diff%864e5)/36e5),minutes:Math.floor((diff%36e5)/6e4),seconds:Math.floor((diff%6e4)/1e3),total:diff}}
+
+function shareX(t,d){window.open(`https://x.com/intent/tweet?text=${encodeURIComponent(`⏳ كم باقي على ${t}؟\n📅 ${d}\nاعرف الآن 👇`)}`,'_blank')}
+function shareWA(t,d){window.open(`https://wa.me/?text=${encodeURIComponent(`⏳ كم باقي على ${t}؟\n📅 ${d}\nاعرف الآن 👇`)}`,'_blank')}
+function shareTG(t,d){window.open(`https://t.me/share/url?text=${encodeURIComponent(`⏳ كم باقي على ${t}؟\n📅 ${d}`)}`,'_blank')}
+function copyLink(t,d){const txt=`⏳ كم باقي على ${t}؟\n📅 ${d}`;navigator.clipboard.writeText(txt).then(()=>alert('تم النسخ! 📋'))}
+
+function buildCard(ev,isNearest){
+  const dls=downloads[ev.title];
+  const dlBtns=dls?dls.map((d,i)=>`<button class="card-action-btn" onclick="openContent('${ev.title}',${i})"><span>${d.icon}</span> ${d.label}</button>`).join(''):'';
+  const customBadge=ev.custom?`<span class="badge-custom">⭐ خاصة</span><button class="delete-custom" onclick="deleteCustom(${ev.id})" title="حذف">✕</button>`:'';
+  const t=ev.title.replace(/'/g,"\\'"),dd=ev.date;
+  return `<article class="card ${isNearest?'nearest':''}" data-date="${ev.date}" data-category="${ev.category}" style="--card-accent:${ev.accent}">
+    ${isNearest?'<span class="badge-nearest">⚡ الأقرب</span>':''}
+    ${!isNearest&&!ev.custom?'<span class="badge-live">مباشر</span>':''}
+    ${customBadge}
+    <div class="card-icon">${ev.icon}</div>
+    <div class="card-category">${ev.category}</div>
+    <h2 class="card-title">${ev.title}</h2>
+    <p class="card-date">${ev.hijri} — ${ev.date}</p>
+    <div class="countdown" data-target="${ev.date}">
+      <div class="cd-unit"><div class="cd-num" data-d>--</div><div class="cd-label">يوم</div></div>
+      <span class="cd-sep">:</span>
+      <div class="cd-unit"><div class="cd-num" data-h>--</div><div class="cd-label">ساعة</div></div>
+      <span class="cd-sep">:</span>
+      <div class="cd-unit"><div class="cd-num" data-m>--</div><div class="cd-label">دقيقة</div></div>
+      <span class="cd-sep">:</span>
+      <div class="cd-unit"><div class="cd-num" data-s>--</div><div class="cd-label">ثانية</div></div>
+    </div>
+    <div class="card-actions">
+      ${dlBtns}
+      <button class="card-action-btn share-x" onclick="shareX('${t}','${dd}')">𝕏 شارك</button>
+      <button class="card-action-btn share-wa" onclick="shareWA('${t}','${dd}')">واتساب</button>
+      <button class="card-action-btn share-tg" onclick="shareTG('${t}','${dd}')">تلقرام</button>
+      <button class="card-action-btn" onclick="copyLink('${t}','${dd}')">📋 نسخ</button>
+    </div>
+  </article>`}
+
+function renderCards(){
+  const sorted=getAllEvents().map(e=>({...e,diff:getTimeDiff(e.date)})).filter(e=>e.diff!==null).sort((a,b)=>a.diff.total-b.diff.total);
+  document.getElementById('grid').innerHTML=sorted.slice(0,6).map((e,i)=>buildCard(e,i===0)).join('');
+  document.getElementById('grid2').innerHTML=sorted.slice(6).map(e=>buildCard(e,false)).join('');
+}
+function updateCountdowns(){document.querySelectorAll('.countdown').forEach(el=>{const d=getTimeDiff(el.dataset.target);if(!d)return;el.querySelector('[data-d]').textContent=String(d.days).padStart(2,'0');el.querySelector('[data-h]').textContent=String(d.hours).padStart(2,'0');el.querySelector('[data-m]').textContent=String(d.minutes).padStart(2,'0');el.querySelector('[data-s]').textContent=String(d.seconds).padStart(2,'0')})}
+
+// ══════ MODAL ══════
+function openContent(t,i){const item=downloads[t][i];const labels={dua:'دعاء',greeting:'تهنئة',schedule:'جدول',info:'معلومات'};
+document.getElementById('modalBody').innerHTML=`<div class="modal-icon">${item.icon}</div><h2 class="modal-title">${item.label}</h2><p class="modal-desc">${labels[item.type]||''} — ${t}</p><div class="modal-content">${item.content}</div><div class="modal-actions"><button class="modal-btn modal-btn-primary" onclick="copyContent()">📋 نسخ النص</button><button class="modal-btn modal-btn-secondary" onclick="shareModalWA()">واتساب</button></div>`;
+document.getElementById('modalOverlay').classList.add('active')}
+function closeModal(){document.getElementById('modalOverlay').classList.remove('active')}
+function copyContent(){const t=document.querySelector('.modal-content').textContent;navigator.clipboard.writeText(t).then(()=>{const b=document.querySelector('.modal-btn-primary');b.textContent='✅ تم!';setTimeout(()=>b.textContent='📋 نسخ النص',2000)})}
+function shareModalWA(){const t=document.querySelector('.modal-content').textContent;window.open(`https://wa.me/?text=${encodeURIComponent(t)}`,'_blank')}
+document.getElementById('modalOverlay').addEventListener('click',function(e){if(e.target===this)closeModal()});
+
+// ══════ THEME ══════
+async function setTheme(t){
+  document.body.setAttribute('data-theme',t);
+  document.querySelectorAll('.theme-dot').forEach(d=>{d.classList.toggle('active',d.dataset.t===t)});
+  try{await window.storage.set('selected-theme',t)}catch(e){}
+}
+async function loadTheme(){
+  try{const r=await window.storage.get('selected-theme');if(r&&r.value)setTheme(r.value)}catch(e){}
+}
+
+// ══════ FILTERS ══════
+document.querySelectorAll('.filter-btn').forEach(btn=>{btn.addEventListener('click',()=>{
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');
+  const f=btn.dataset.filter;
+  document.querySelectorAll('.card').forEach(c=>{c.classList.toggle('hidden',f!=='all'&&c.dataset.category!==f)});
+  const show=f==='all';
+  ['ad1','ad2','dealsSection'].forEach(id=>{const el=document.getElementById(id);if(el)el.style.display=show?'':'none'});
+})});
+
+// ══════ NEWSLETTER ══════
+function subscribeEmail(){const i=document.getElementById('emailInput'),e=i.value.trim();if(!e||!e.includes('@')){i.style.borderColor='var(--accent-rose)';setTimeout(()=>i.style.borderColor='',2000);return}const b=document.querySelector('.newsletter-submit');b.textContent='✅ تم الاشتراك!';b.style.background='var(--accent-green)';i.value='';i.disabled=true;b.disabled=true}
+
+// ══════ INIT ══════
+async function init(){
+  await loadCustom();
+  await loadTheme();
+  renderCards();
+  updateCountdowns();
+  setInterval(updateCountdowns,1000);
+}
+init();
+</script>
+</body>
+</html>
